@@ -1,36 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-  <in.pathri.codenvydownloadbeta.preferancehandlers.LoginPreference
+  <in.pathri.codenvydownload.screens.LoginScreen
+      android:defaultValue="true"
         android:key="is_logged_in"
-        android:title="User Login"
-        android:summary="Logged In User: -None-"
         android:persistent="true"
-        android:defaultValue="true" />
+      android:summary="Logged In User: -None-"
+      android:title="User Login" />
     <ListPreference
+        category="workspace"
         android:dependency="is_logged_in"
-        android:key="workspace"
-        android:title="Workspace"
         android:dialogTitle="Select Workspace"
+        android:enabled="false"
+        android:key="workspace"
         android:persistent="true"
         android:summary="No Workspace"
-        android:enabled="false"
-        category="workspace" />
+        android:title="Workspace" />
     <ListPreference
+        category="project"
         android:dependency="is_logged_in"
-        android:key="project"
-        android:title="Project"
         android:dialogTitle="Select Project"
-        android:persistent="true"
         android:enabled="false"
+        android:key="project"
+        android:persistent="true"
         android:summary="No Project"
-        category="project" />
+        android:title="Project" />
     <ListPreference
+        category="command"
         android:dependency="is_logged_in"
-        android:key="command"
-        android:title="Build Command"
         android:dialogTitle="Select Command"
-        android:persistent="true"
         android:enabled="false"
+        android:key="command"
+        android:persistent="true"
         android:summary="This server type does not support this options"
-        category="command" />  
+        android:title="Build Command" />
 </PreferenceScreen>

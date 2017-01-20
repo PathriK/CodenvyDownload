@@ -6,7 +6,8 @@ android:
     - tools # to get the new `repository-11.xml`
     - tools # to install Android SDK tools 25.1.x (x = 6 right now)  
     - extra-android-support
-    - extra-android-m2repository    
+    - extra-android-m2repository
+    - extra-google-m2repository
     - build-tools-24.0.1
     - android-24
 

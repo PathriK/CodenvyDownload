@@ -7,11 +7,11 @@ import java.util.List;
 import java.util.Map;
 
 import in.pathri.codenvydownload.client.dao.CodenvyResponse;
+import in.pathri.codenvydownload.client.dao.ResponseType;
 import in.pathri.codenvydownload.client.dao.WorkspaceDetails;
-import in.pathri.codenvydownload.dao.ResponseType;
 import in.pathri.codenvydownload.dao.SetupData;
+import in.pathri.codenvydownload.dao.SpinnerType;
 import in.pathri.codenvydownload.dao.SummaryTextType;
-import in.pathri.codenvydownload.screens.CustomProgressDialog;
 import in.pathri.codenvydownload.screens.SetupScreen;
 import in.pathri.codenvydownload.services.MainService;
 import okhttp3.ResponseBody;
@@ -22,8 +22,8 @@ import okhttp3.ResponseBody;
 public class WorkspaceResponseHandler extends ApiResponseHandler<List<CodenvyResponse>> {
     private static final String className = WorkspaceResponseHandler.class.getSimpleName();
 
-    public WorkspaceResponseHandler(CustomProgressDialog workspaceProgressDialog) {
-        super(workspaceProgressDialog, ResponseType.ARRAY);
+    public WorkspaceResponseHandler() {
+        super(SpinnerType.WORKSPACE_REFRESH, ResponseType.ARRAY);
     }
 
     @Override

@@ -17,6 +17,7 @@ import in.pathri.codenvydownload.R;
 import in.pathri.codenvydownload.client.CodenvyClient;
 import in.pathri.codenvydownload.dao.AppData;
 import in.pathri.codenvydownload.dao.LoginData;
+import in.pathri.codenvydownload.dao.SpinnerType;
 import in.pathri.codenvydownload.utilities.CustomLogger;
 
 /**
@@ -61,6 +62,22 @@ public class LoginScreen extends DialogPreference {
     public static void updateLoginStatus(String statusText) {
         CustomLogger.d(className, "updateLoginStatus", "statusText", statusText);
         loginStatus.setText(statusText);
+    }
+
+    public static void showSpinner(SpinnerType spinnerType) {
+        switch (spinnerType) {
+            case LOGIN_DIALOG:
+                loginSpinner.setVisibility(View.VISIBLE);
+                break;
+        }
+    }
+
+    public static void hideSpinner(SpinnerType spinnerType) {
+        switch (spinnerType) {
+            case LOGIN_DIALOG:
+                loginSpinner.setVisibility(View.GONE);
+                break;
+        }
     }
 
     @Override

@@ -21,6 +21,7 @@ import in.pathri.codenvydownload.R;
 import in.pathri.codenvydownload.client.CodenvyClient;
 import in.pathri.codenvydownload.dao.AppData;
 import in.pathri.codenvydownload.dao.SetupData;
+import in.pathri.codenvydownload.dao.SpinnerType;
 import in.pathri.codenvydownload.dao.SummaryTextType;
 import in.pathri.codenvydownload.services.MainService;
 import in.pathri.codenvydownload.utilities.CustomLogger;
@@ -44,6 +45,22 @@ public class SetupScreen extends PreferenceActivity {
     private static ListPreference workspacePrefs, projectPrefs, commandPrefs;
     private static Preference userCred;
     private static SharedPreferences sharedPreferences;
+
+    public static void showSpinner(SpinnerType spinnerType) {
+        switch (spinnerType) {
+            case WORKSPACE_REFRESH:
+                workspaceProgressDialog.show();
+                break;
+        }
+    }
+
+    public static void hideSpinner(SpinnerType spinnerType) {
+        switch (spinnerType) {
+            case WORKSPACE_REFRESH:
+                workspaceProgressDialog.dismiss();
+                break;
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

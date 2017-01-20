@@ -65,7 +65,7 @@ public class MainService {
 
     public static void doBuildLogin() {
         AppData.clearBuildData();
-//        CodenvyClient.postBuildLogin();
+        CodenvyClient.postBuildLogin();
     }
 
     public static void SetupScreenOnResume(Context context, SharedPreferences sharedPreferences) {

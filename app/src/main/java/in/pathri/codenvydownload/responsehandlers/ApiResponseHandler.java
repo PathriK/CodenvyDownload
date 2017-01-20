@@ -1,17 +1,14 @@
 package in.pathri.codenvydownload.responsehandlers;
 
-import android.view.View;
-import android.widget.ProgressBar;
-
 import java.io.IOException;
 import java.util.List;
 
 import in.pathri.codenvydownload.client.CodenvyClient;
 import in.pathri.codenvydownload.client.dao.CodenvyResponse;
-import in.pathri.codenvydownload.dao.ResponseType;
+import in.pathri.codenvydownload.client.dao.ResponseType;
+import in.pathri.codenvydownload.dao.SpinnerType;
 import in.pathri.codenvydownload.dao.StatusTextType;
 import in.pathri.codenvydownload.screens.BuildScreen;
-import in.pathri.codenvydownload.screens.CustomProgressDialog;
 import in.pathri.codenvydownload.utilities.Common;
 import in.pathri.codenvydownload.utilities.CustomLogger;
 import okhttp3.ResponseBody;
@@ -27,20 +24,15 @@ public abstract class ApiResponseHandler<T> implements Callback<T> {
     final static String START = "start";
     final static String END = "end";
     private static final String className = ApiResponseHandler.class.getSimpleName();
-    ProgressBar spinner = null;
-    CustomProgressDialog pd = null;
+    //    ProgressBar spinner = null;
+//    CustomProgressDialog pd = null;
+    SpinnerType spinner;
     ResponseType responseType = ResponseType.BINARY;
     boolean retryFlag = false;
     Response response;
 
-    ApiResponseHandler(ProgressBar spinner, ResponseType responseType) {
+    ApiResponseHandler(SpinnerType spinner, ResponseType responseType) {
         this.spinner = spinner;
-        this.responseType = responseType;
-        updateProgress(START);
-    }
-
-    ApiResponseHandler(CustomProgressDialog pd, ResponseType responseType) {
-        this.pd = pd;
         this.responseType = responseType;
         updateProgress(START);
     }
@@ -143,27 +135,36 @@ public abstract class ApiResponseHandler<T> implements Callback<T> {
         }
     }
 
-    private void extractCookie() {
+    protected void extractCookie() {
         List<String> cookies = response.headers().values("Set-Cookie");
         CodenvyClient.updateCookie(cookies);
     }
 
     private void updateProgress(String status) {
         if (START.equalsIgnoreCase(status)) {
-            if (spinner != null) {
-                CustomLogger.i(className, "updateProgress", "Visible");
-                this.spinner.setVisibility(View.VISIBLE);
-            }
-            if (pd != null) {
-                pd.show();
-            }
+            CustomLogger.i(className, "updateProgress", "Visible");
+            spinner.showSpinner();
         } else {
-            if (spinner != null) {
-                this.spinner.setVisibility(View.GONE);
-            }
-            if (pd != null) {
-                pd.dismiss();
-            }
+            CustomLogger.i(className, "updateProgress", "Hide");
+            spinner.hideSpinner();
         }
     }
+//    private void updateProgress(String status) {
+//        if (START.equalsIgnoreCase(status)) {
+//            if (spinner != null) {
+//                CustomLogger.i(className, "updateProgress", "Visible");
+//                this.spinner.setVisibility(View.VISIBLE);
+//            }
+//            if (pd != null) {
+//                pd.show();
+//            }
+//        } else {
+//            if (spinner != null) {
+//                this.spinner.setVisibility(View.GONE);
+//            }
+//            if (pd != null) {
+//                pd.dismiss();
+//            }
+//        }
+//    }
 }

@@ -3,7 +3,8 @@ package in.pathri.codenvydownload.responsehandlers;
 import java.util.List;
 
 import in.pathri.codenvydownload.client.dao.CodenvyResponse;
-import in.pathri.codenvydownload.dao.ResponseType;
+import in.pathri.codenvydownload.client.dao.ResponseType;
+import in.pathri.codenvydownload.dao.SpinnerType;
 import in.pathri.codenvydownload.screens.LoginScreen;
 import okhttp3.ResponseBody;
 
@@ -14,7 +15,7 @@ public class LoginDialogResponseHandler extends ApiResponseHandler<CodenvyRespon
     private static final String className = LoginDialogResponseHandler.class.getSimpleName();
 
     public LoginDialogResponseHandler() {
-        super(LoginScreen.loginSpinner, ResponseType.POJO);
+        super(SpinnerType.LOGIN_DIALOG, ResponseType.POJO);
     }
 
     @Override

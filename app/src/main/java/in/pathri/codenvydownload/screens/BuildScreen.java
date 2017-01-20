@@ -12,6 +12,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import in.pathri.codenvydownload.R;
+import in.pathri.codenvydownload.dao.SpinnerType;
 import in.pathri.codenvydownload.dao.StatusTextType;
 import in.pathri.codenvydownload.services.MainService;
 import in.pathri.codenvydownload.utilities.CustomLogger;
@@ -19,28 +20,34 @@ import in.pathri.codenvydownload.utilities.CustomLogger;
 public class BuildScreen extends AppCompatActivity {
     private static final String className = BuildScreen.class.getSimpleName();
     public static Context context;
+    public static ProgressBar loginSpinner, buildSpinner, triggerSpinner, downloadSpinner;
     static TextView loginStatus, buildStatus, statusMsg, downloadStatus, triggerStatus, currentStatus;
-    private static ProgressBar loginSpinner, buildSpinner, triggerSpinner, downloadSpinner;
+    private static BuildScreen buildScreen;
 
-    public static void updateStatusText(StatusTextType statusTextType, String msg) {
-        switch (statusTextType) {
-            case LOGIN_STATUS:
-                loginStatus.setText(msg);
-                break;
-            case TRIGGER_STATUS:
-                triggerStatus.setText(msg);
-                break;
-            case BUILD_STATUS:
-                buildStatus.setText(msg);
-                break;
-            case DOWNLOAD_STATUS:
-                downloadStatus.setText(msg);
-                break;
-            case STATUS_MSG:
-                String temp = statusMsg.getText().toString();
-                statusMsg.setText(temp + msg);
-                break;
-        }
+    public static void updateStatusText(final StatusTextType statusTextType, final String msg) {
+        buildScreen.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                switch (statusTextType) {
+                    case LOGIN_STATUS:
+                        loginStatus.setText(msg);
+                        break;
+                    case TRIGGER_STATUS:
+                        triggerStatus.setText(msg);
+                        break;
+                    case BUILD_STATUS:
+                        buildStatus.setText(msg);
+                        break;
+                    case DOWNLOAD_STATUS:
+                        downloadStatus.setText(msg);
+                        break;
+                    case STATUS_MSG:
+                        String temp = statusMsg.getText().toString();
+                        statusMsg.setText(temp + msg);
+                        break;
+                }
+            }
+        });
         CustomLogger.i(className, statusTextType.name(), msg);
     }
 
@@ -52,6 +59,52 @@ public class BuildScreen extends AppCompatActivity {
         for (StatusTextType statusText : StatusTextType.values()) {
             updateStatusText(statusText, "");
         }
+    }
+
+    public static void showSpinner(final SpinnerType spinnerType) {
+        buildScreen.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                switch (spinnerType) {
+                    case BUILD_LOGIN:
+                        loginSpinner.setVisibility(View.VISIBLE);
+                        break;
+                    case BUILD_TRIGGER:
+                        triggerSpinner.setVisibility(View.VISIBLE);
+                        break;
+                    case BUILD_BUILD:
+                        buildSpinner.setVisibility(View.VISIBLE);
+                        break;
+                    case BUILD_DOWNLOAD:
+                        buildSpinner.setVisibility(View.VISIBLE);
+                        break;
+                }
+            }
+        });
+
+    }
+
+    public static void hideSpinner(final SpinnerType spinnerType) {
+        buildScreen.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                switch (spinnerType) {
+                    case BUILD_LOGIN:
+                        loginSpinner.setVisibility(View.GONE);
+                        break;
+                    case BUILD_TRIGGER:
+                        triggerSpinner.setVisibility(View.GONE);
+                        break;
+                    case BUILD_BUILD:
+                        buildSpinner.setVisibility(View.GONE);
+                        break;
+                    case BUILD_DOWNLOAD:
+                        buildSpinner.setVisibility(View.GONE);
+                        break;
+                }
+            }
+        });
+
     }
 
     @Override
@@ -73,6 +126,7 @@ public class BuildScreen extends AppCompatActivity {
         downloadSpinner = (ProgressBar) findViewById(R.id.download_progress);
 
         context = getApplicationContext();
+        buildScreen = this;
 
         statusMsg.setMovementMethod(new ScrollingMovementMethod());
     }

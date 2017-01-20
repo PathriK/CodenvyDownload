@@ -10,6 +10,8 @@ android {
         targetSdkVersion 24
         versionCode 1
         versionName "1.0"
+        testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
+        setProperty("archivesBaseName", "CodenvyDownload-$versionName")
     }
     buildTypes {
         debug {
@@ -31,12 +33,15 @@ dependencies {
     compile 'com.android.support:appcompat-v7:24.2.0'
     compile 'com.google.android.gms:play-services-appindexing:9.4.0'
     compile 'com.github.mukeshsolanki:Android-Shared-Preferences-TinyDB-:1.0.2'
-    // https://mvnrepository.com/artifact/com.google.guava/guava
     compile group: 'com.google.guava', name: 'guava', version: '19.0'
     compile 'com.squareup.retrofit2:retrofit:2.0.0'
-    // https://mvnrepository.com/artifact/com.squareup.retrofit2/converter-gson
     compile group: 'com.squareup.retrofit2', name: 'converter-gson', version: '2.0.0'
-    // https://mvnrepository.com/artifact/com.squareup.okhttp3/okhttp-urlconnection
     compile group: 'com.squareup.okhttp3', name: 'okhttp-urlconnection', version: '3.5.0'
+    compile 'com.squareup.okhttp3:logging-interceptor:3.5.0'
     compile 'com.neovisionaries:nv-websocket-client:1.30'
+    compile group: 'commons-io', name: 'commons-io', version: '2.5'
+
+    androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    }
 }

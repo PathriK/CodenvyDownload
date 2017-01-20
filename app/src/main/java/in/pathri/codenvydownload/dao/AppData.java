@@ -13,6 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import in.pathri.codenvydownload.client.dao.BuildResult;
+import in.pathri.codenvydownload.client.dao.BuildStatus;
 import in.pathri.codenvydownload.client.dao.CommandDetails;
 import in.pathri.codenvydownload.utilities.CustomLogger;
 import in.pathri.codenvydownload.utilities.TableGsonAdapter;

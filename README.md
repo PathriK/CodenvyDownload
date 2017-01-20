@@ -12,14 +12,18 @@ This App can be used to trigger remote build and download the project artifact (
 
 1. Go to Setup
 2. Login using Codenvy Credentials
-3. Select the Workspace & Project for which APK needs to be downloaded
+3. Select the Workspace, Project and Command for which APK needs to be downloaded
 4. Go back
 5. Click on 'Build Download & Install'
 6. The Project gets build and the generated APK gets downloaded and installed automatically 
 
 ##Play Store Link : 
 
-TBD
+https://play.google.com/store/apps/details?id=in.pathri.codenvydownload
+
+## Download
+
+https://github.com/PathriK/CodenvyDownload/tree/master/binaries
 
 ## Contact:
 Gmail: pathrikumark@gmail.com
@@ -28,5 +32,5 @@ Gitter: https://gitter.im/PathriK/GaanaDownloader
 
 ## CHANGELOG:
 
-v1.0:
-- Initial Release
+v1.2:
+- Now works with Codenvy.io
